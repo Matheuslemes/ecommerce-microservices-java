@@ -4,9 +4,10 @@ import com.ecommerce.orders.application.port.in.CreateOrderUseCase;
 import com.ecommerce.orders.domain.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/orders")
 public class OrderController {
 
@@ -19,7 +20,7 @@ public class OrderController {
         this.createOrderUseCase = createOrderUseCase;
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
         Order newOrder = createOrderUseCase.createOrder(order);
         return ResponseEntity.ok(newOrder);
